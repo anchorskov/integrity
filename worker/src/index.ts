@@ -1,6 +1,6 @@
 // worker/src/index.ts
 //
-// Hono app, not native Cloudflare Workers request/response handling — see
+// Hono app, not native Cloudflare Workers request/response handling. See
 // docs/planning/03-reuse-architecture.md "API framework" for why. This same
 // app should be able to run on Node/Deno/Bun later with only the entry
 // export at the bottom changing, as long as route handlers stay off
@@ -29,7 +29,7 @@ app.get('/api/health', (c) =>
 );
 
 // ---------------------------------------------------------------------
-// Members / auth — schema is live (migrations/0001_members_auth.sql,
+// Members / auth: schema is live (migrations/0001_members_auth.sql,
 // ported from grassmvt_survey's Lucia + WebAuthn stack). Route handlers
 // are not yet implemented; each stub below documents what it will do so
 // this file stays the map of Phase 1 as it fills in, rather than a bare
@@ -46,7 +46,7 @@ members.get('/me', (c) =>
 
 members.post('/magic-link/request', (c) =>
   c.json(
-    { error: 'not_implemented', detail: 'Will insert into member_magic_link_tokens and send via email — port grassmvt_survey src/server/email/.' },
+    { error: 'not_implemented', detail: 'Will insert into member_magic_link_tokens and send via email; port grassmvt_survey src/server/email/.' },
     501,
   ),
 );

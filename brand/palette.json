@@ -1,6 +1,6 @@
 {
   "name": "the-ledger",
-  "description": "The Fourth Branch / Integrity Project brand palette — a civic public-record aesthetic. Every color is chosen, not inherited: cool paper (not warm cream), verdigris as primary accent (aged bronze/civic monuments), brass reserved for financial figures only, a muted seal-red for status/new markers.",
+  "description": "The Fourth Branch / Integrity Project brand palette, a civic public-record aesthetic. Every color is chosen, not inherited: cool paper (not warm cream), verdigris as primary accent (aged bronze/civic monuments), brass reserved for financial figures only, a muted seal-red for status/new markers.",
   "light": {
     "paper": "#EEF1EC",
     "paperRaised": "#F8F9F6",
@@ -36,9 +36,9 @@
     "inkBandText": "#E9EBE5"
   },
   "usageRules": {
-    "verdigris": "Primary accent — links, active states, Watch feature, CTAs.",
-    "brass": "Reserved exclusively for financial figures (money-involved fields, price displays). Do not use as a general accent — the point is a consistent 'follow the money' visual thread.",
-    "seal": "Status/new markers only (docket 'New' badges, alert accents). Not a general error/danger color — this is a document-stamp reference, not semantic red.",
-    "inkBand": "Reserved for the Watch section and any 'this changed, pay attention' moment — an inverted band, used sparingly, not a repeating section background."
+    "verdigris": "Primary accent: links, active states, Watch feature, CTAs.",
+    "brass": "Reserved exclusively for financial figures (money-involved fields, price displays). Do not use as a general accent; the point is a consistent 'follow the money' visual thread.",
+    "seal": "Status/new markers only (docket 'New' badges, alert accents). Not a general error/danger color; this is a document-stamp reference, not semantic red.",
+    "inkBand": "Reserved for the Watch section and any 'this changed, pay attention' moment. An inverted band, used sparingly, not a repeating section background."
   }
 }
