@@ -1,0 +1,44 @@
+{
+  "name": "the-ledger",
+  "description": "The Fourth Branch / Integrity Project brand palette — a civic public-record aesthetic. Every color is chosen, not inherited: cool paper (not warm cream), verdigris as primary accent (aged bronze/civic monuments), brass reserved for financial figures only, a muted seal-red for status/new markers.",
+  "light": {
+    "paper": "#EEF1EC",
+    "paperRaised": "#F8F9F6",
+    "ink": "#12161C",
+    "inkSoft": "#4E544C",
+    "inkFaint": "#767C73",
+    "rule": "#CBD1C6",
+    "verdigris": "#3F6E5E",
+    "verdigrisInk": "#24463A",
+    "verdigrisSoft": "#E1E9E3",
+    "brass": "#8C6A31",
+    "brassSoft": "#EFE5D0",
+    "seal": "#9C3B26",
+    "sealSoft": "#F2E0D9",
+    "inkBand": "#14191F",
+    "inkBandText": "#E9EBE5"
+  },
+  "dark": {
+    "paper": "#12161A",
+    "paperRaised": "#181D22",
+    "ink": "#E9EAE4",
+    "inkSoft": "#ABB2A6",
+    "inkFaint": "#7C837B",
+    "rule": "#2C332D",
+    "verdigris": "#6FB39D",
+    "verdigrisInk": "#BFE4D6",
+    "verdigrisSoft": "rgba(111,179,157,0.14)",
+    "brass": "#D2A55C",
+    "brassSoft": "rgba(210,165,92,0.14)",
+    "seal": "#D6795C",
+    "sealSoft": "rgba(214,121,92,0.14)",
+    "inkBand": "#090C0F",
+    "inkBandText": "#E9EBE5"
+  },
+  "usageRules": {
+    "verdigris": "Primary accent — links, active states, Watch feature, CTAs.",
+    "brass": "Reserved exclusively for financial figures (money-involved fields, price displays). Do not use as a general accent — the point is a consistent 'follow the money' visual thread.",
+    "seal": "Status/new markers only (docket 'New' badges, alert accents). Not a general error/danger color — this is a document-stamp reference, not semantic red.",
+    "inkBand": "Reserved for the Watch section and any 'this changed, pay attention' moment — an inverted band, used sparingly, not a repeating section background."
+  }
+}

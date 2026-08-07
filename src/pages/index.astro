@@ -1,0 +1,368 @@
+---
+// src/pages/index.astro
+import Base from '../layouts/Base.astro';
+
+const briefs = [
+  {
+    docket: 'Natrona Co. · Commission',
+    status: 'New',
+    title: 'County approves $2.4M road maintenance contract',
+    vote: '4–1',
+    money: '$2,400,000',
+    why: 'Repaves 14 miles of county road ahead of the 2026–27 winter season.',
+    next: 'Work begins Sep 2026',
+    sources: ['Agenda', 'Minutes', 'Video'],
+  },
+  {
+    docket: 'WY Legislature · HB 42',
+    title: 'Property tax relief bill advances to Senate committee',
+    vote: '38–22',
+    money: '~$40M/yr impact',
+    why: 'Caps annual residential assessment increases at 4%.',
+    next: 'Senate Revenue, TBD',
+    sources: ['Bill text', 'Roll call', 'Fiscal note'],
+  },
+  {
+    docket: 'NCSD #1 · School Board',
+    title: 'Board renews superintendent contract through 2029',
+    vote: '6–0',
+    money: '$168,000/yr',
+    why: 'Extends current leadership two years past the prior term.',
+    next: 'Review at FY28 budget',
+    sources: ['Agenda', 'Contract'],
+  },
+];
+
+const tiers = [
+  {
+    name: 'Free', price: '$0', featured: false,
+    features: ['Statewide weekly brief', 'Candidate & office database', 'Public surveys', 'Every source document'],
+    cta: 'Start reading',
+  },
+  {
+    name: 'Supporter', price: '$5', period: '/mo', featured: true,
+    features: ['Everything in Free', 'Personalized local briefing', 'Watch lists & email alerts', 'Saved topics'],
+    cta: 'Join as Supporter',
+  },
+  {
+    name: 'Sustainer', price: '$10', period: '/mo', featured: false,
+    features: ['Everything in Supporter', 'Advanced search & saved research', 'Monthly member briefing', 'Suggest research questions'],
+    cta: 'Join as Sustainer',
+  },
+  {
+    name: 'Founding Sustainer', price: '$25', period: '/mo', featured: false,
+    features: ['Everything above', 'Support-level, not access-gated', 'Optional recognition'],
+    cta: 'Become a Founder',
+  },
+];
+---
+<Base
+  title="The Fourth Branch — Wyoming civic record"
+  description="Public records, made public knowledge. Free civic briefings, a neutral candidate database, and Watch alerts for Wyoming government — member-supported, source-cited, no scoring."
+>
+  <header class="site">
+    <div class="nav-row">
+      <a class="wordmark" href="#top">
+        <span class="mark">The Fourth Branch</span>
+        <span class="sub">Wyoming Civic Record</span>
+      </a>
+      <nav class="primary" aria-label="Primary">
+        <a href="#briefs">Briefs</a>
+        <a href="#candidates">Candidates</a>
+        <a href="#watch">Watch</a>
+        <a href="#membership">Membership</a>
+        <a href="#trust">About</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="link" href="/login">Sign in</a>
+        <a class="btn" href="#membership">Join — $5/mo</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">Public benefit nonprofit · Wyoming · 501(c)(3)</span>
+          <h1>Government has<br />three branches.<br /><em>Wyoming has a fourth.</em></h1>
+          <p class="lede">We turn scattered public records — meeting minutes, votes, contracts, campaign filings — into plain, sourced, personal civic briefings. Free to read. Member-supported to build.</p>
+          <div class="hero-ctas">
+            <a class="btn" href="#briefs">Read the record</a>
+            <a class="btn ghost" href="#watch">See how Watch works →</a>
+          </div>
+        </div>
+
+        <div class="locator">
+          <span class="eyebrow">Find your record</span>
+          <div class="chip-chain" role="group" aria-label="Choose your geography">
+            <button class="chip" type="button" data-place="Mills" aria-pressed="true">Mills</button>
+            <span class="chip-arrow">→</span>
+            <button class="chip" type="button" data-place="Natrona County" aria-pressed="false">Natrona County</button>
+            <span class="chip-arrow">→</span>
+            <button class="chip" type="button" data-place="Wyoming" aria-pressed="false">Wyoming</button>
+            <span class="chip-arrow">→</span>
+            <button class="chip" type="button" data-place="Federal" aria-pressed="false">Federal</button>
+          </div>
+          <p class="locator-result">Showing the civic record for <strong id="locator-out">Mills, Natrona County, Wyoming</strong>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="briefs">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Latest from the record</h2>
+            <p class="section-lede">Every brief follows the same format: what happened, why it matters, who decided, what it cost, and where to read the original documents yourself.</p>
+          </div>
+          <a class="link" href="/briefs">All briefs →</a>
+        </div>
+
+        <div class="brief-grid">
+          {briefs.map((b) => (
+            <article class="brief">
+              <div class="docket">
+                <span class="eyebrow">{b.docket}</span>
+                {b.status && <span class="status">{b.status}</span>}
+              </div>
+              <h3>{b.title}</h3>
+              <dl class="fields">
+                <dt>Vote</dt><dd class="tabular">{b.vote}</dd>
+                <dt>Money</dt><dd class="money tabular">{b.money}</dd>
+                <dt>Why</dt><dd class="why">{b.why}</dd>
+                <dt>Next</dt><dd class="tabular">{b.next}</dd>
+              </dl>
+              <div class="sources">
+                {b.sources.map((s) => <a href="#">{s}</a>)}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="watch-band" id="watch">
+      <div class="wrap section watch-grid">
+        <div>
+          <span class="eyebrow">The Watch feature</span>
+          <h2>Follow a topic. We'll tell you when the record changes.</h2>
+          <p>Watch a county commission, a bill, a school board, or a line item in the state budget. When something moves, you get a plain-language alert, not a push notification for its own sake.</p>
+          <ul class="watch-list">
+            <li>Government spending &amp; property taxes</li>
+            <li>A specific bill through committee and floor votes</li>
+            <li>Your county commission or school board</li>
+            <li>Campaign contributions in a race you're watching</li>
+          </ul>
+          <a class="btn" href="#membership">Start a Watch list</a>
+        </div>
+        <div class="alert-card">
+          <span class="eyebrow">Email alert · Aug 5, 2026</span>
+          <h4>Natrona County Commission — new decision on your Watch list</h4>
+          <ol>
+            <li><strong>What happened</strong> — Contract approved, 4–1.</li>
+            <li><strong>Why it matters</strong> — Road work funded through winter 2026.</li>
+            <li><strong>Source documents</strong> — Agenda, minutes, video linked below.</li>
+            <li><strong>What's next</strong> — Work begins September 2026.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="membership">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Membership</h2>
+            <p class="section-lede">We don't charge for facts that are already public. We charge for making them useful — organized, personal, and easy to follow.</p>
+          </div>
+        </div>
+
+        <div class="tiers">
+          {tiers.map((t) => (
+            <div class={`tier ${t.featured ? 'featured' : ''}`}>
+              <span class="tier-name">{t.name}</span>
+              <span class="price">{t.price}{t.period && <span>{t.period}</span>}</span>
+              <ul>
+                {t.features.map((f) => <li>{f}</li>)}
+              </ul>
+              <a class={`btn ${t.featured ? '' : 'ghost'}`} href="/join">{t.cta}</a>
+            </div>
+          ))}
+        </div>
+        <p class="tier-note">"I pay $5 a month to help make trustworthy civic information available to everyone."</p>
+      </div>
+    </section>
+
+    <section class="trust" id="trust">
+      <div class="wrap trust-grid">
+        <div class="trust-col">
+          <h4>Neutrality policy</h4>
+          <p>Every candidate gets identical fields, identical questions, and no score. We publish sourced records, not opinions, and let you examine the evidence yourself.</p>
+        </div>
+        <div class="trust-col">
+          <h4>Standing</h4>
+          <span class="seal-badge">Wyoming public benefit corp · 501(c)(3)</span>
+          <p style="margin-top:12px;">Filed July 2025. Governed by an all-volunteer board. Funding sources disclosed annually.</p>
+        </div>
+        <div class="trust-col">
+          <h4>The record</h4>
+          <a href="/about/sourcing">How we source every brief</a>
+          <a href="/documenters">Meeting documenter program</a>
+          <a href="/research">Submit a research question</a>
+        </div>
+        <div class="trust-col">
+          <h4>Organization</h4>
+          <a href="/about/governance">Board &amp; governance</a>
+          <a href="/about/funding">Funding &amp; transparency</a>
+          <a href="/contact">Contact</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="legal">
+    <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; width:100%;">
+      <span>© 2026 The Fourth Branch / Integrity Project — a Wyoming 501(c)(3)</span>
+      <span>Public records, made public knowledge.</span>
+    </div>
+  </footer>
+
+  <script>
+    const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
+    const out = document.getElementById('locator-out');
+    const labels: Record<string, string> = {
+      Mills: 'Mills, Natrona County, Wyoming',
+      'Natrona County': 'Natrona County, Wyoming',
+      Wyoming: 'Wyoming (statewide)',
+      Federal: "Wyoming's federal delegation",
+    };
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        chips.forEach((c) => c.setAttribute('aria-pressed', 'false'));
+        chip.setAttribute('aria-pressed', 'true');
+        if (out) out.textContent = labels[chip.dataset.place ?? ''] ?? chip.dataset.place ?? '';
+      });
+    });
+  </script>
+</Base>
+
+<style>
+  header.site {
+    position: sticky; top: 0; z-index: 40;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; padding: 16px clamp(20px, 4vw, 48px);
+  }
+  .wordmark { display: flex; align-items: baseline; gap: 10px; text-decoration: none; color: var(--ink); }
+  .wordmark .mark { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: -0.01em; }
+  .wordmark .sub {
+    font-family: var(--font-mono); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-faint); border-left: 1px solid var(--rule); padding-left: 10px;
+  }
+  nav.primary { display: flex; align-items: center; gap: clamp(14px, 2vw, 28px); }
+  nav.primary a {
+    text-decoration: none; font-size: .92rem; color: var(--ink-soft);
+    padding: 6px 2px; border-bottom: 1px solid transparent; transition: color .15s, border-color .15s;
+  }
+  nav.primary a:hover, nav.primary a:focus-visible { color: var(--verdigris); border-color: var(--verdigris); }
+  .nav-actions { display: flex; align-items: center; gap: 12px; }
+  .nav-actions .link { font-size: .88rem; text-decoration: none; color: var(--ink-soft); }
+
+  .hero { padding: clamp(56px, 9vw, 104px) 0 clamp(40px, 6vw, 64px); }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(32px, 5vw, 64px); align-items: end; }
+  .hero h1 { font-size: clamp(2.5rem, 5.2vw, 4.1rem); line-height: 1.03; margin: 18px 0 22px; letter-spacing: -0.01em; }
+  .hero h1 em { font-style: italic; color: var(--verdigris-ink); }
+  .hero p.lede { font-family: var(--font-serif); font-size: 1.2rem; line-height: 1.55; color: var(--ink-soft); max-width: 46ch; margin: 0 0 28px; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .locator { background: var(--paper-raised); border: 1px solid var(--rule); padding: 22px 22px 20px; }
+  .locator .eyebrow { margin-bottom: 12px; }
+  .chip-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 14px; }
+  .chip {
+    font-family: var(--font-mono); font-size: .82rem; letter-spacing: .01em; border: 1px solid var(--rule);
+    background: var(--paper); color: var(--ink-soft); padding: 7px 12px; cursor: pointer; transition: all .15s ease;
+  }
+  .chip:hover { border-color: var(--verdigris); color: var(--ink); }
+  .chip[aria-pressed="true"] { background: var(--verdigris); border-color: var(--verdigris); color: var(--paper-raised); font-weight: 600; }
+  .chip-arrow { color: var(--ink-faint); font-size: .8rem; }
+  .locator-result { font-size: .92rem; color: var(--ink-soft); border-top: 1px dashed var(--rule); padding-top: 12px; }
+  .locator-result strong { color: var(--ink); font-weight: 600; }
+
+  .section { padding: clamp(44px, 7vw, 80px) 0; }
+  .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-bottom: clamp(24px, 4vw, 40px); border-bottom: 1px solid var(--rule); padding-bottom: 18px; }
+  .section-head h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); }
+  .section-head .link { font-size: .88rem; text-decoration: none; color: var(--verdigris); white-space: nowrap; }
+  .section-lede { font-family: var(--font-serif); color: var(--ink-soft); max-width: 62ch; margin: 10px 0 0; font-size: 1.05rem; }
+
+  .brief-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .brief { background: var(--paper-raised); padding: 24px 22px 22px; display: flex; flex-direction: column; gap: 14px; }
+  .brief .docket { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .brief .docket .eyebrow { color: var(--ink-faint); }
+  .brief .status {
+    font-family: var(--font-mono); font-size: .66rem; text-transform: uppercase; letter-spacing: .08em;
+    padding: 3px 8px; border: 1px solid var(--seal); color: var(--seal); white-space: nowrap;
+  }
+  .brief h3 { font-size: 1.32rem; line-height: 1.22; margin: 2px 0 2px; }
+  .brief .fields { display: grid; grid-template-columns: auto 1fr; gap: 5px 12px; font-size: .86rem; margin-top: 4px; }
+  .brief .fields dt { font-family: var(--font-mono); text-transform: uppercase; font-size: .66rem; letter-spacing: .06em; color: var(--ink-faint); align-self: baseline; padding-top: 3px; }
+  .brief .fields dd { margin: 0; color: var(--ink-soft); }
+  .brief .fields dd.money { font-family: var(--font-mono); color: var(--brass); font-weight: 600; }
+  .brief .fields dd.why { color: var(--ink); }
+  .brief .sources { display: flex; gap: 14px; flex-wrap: wrap; margin-top: auto; padding-top: 14px; border-top: 1px dashed var(--rule); }
+  .brief .sources a { font-size: .78rem; text-decoration: none; color: var(--verdigris); }
+  .brief .sources a::before { content: "↗ "; }
+
+  .watch-band { background: var(--ink-band); color: var(--ink-band-text); }
+  .watch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+  .watch-band .eyebrow { color: #8FCBB6; }
+  .watch-band h2 { font-size: clamp(1.9rem, 3.4vw, 2.6rem); margin: 14px 0 16px; color: var(--ink-band-text); }
+  .watch-band p { color: #B7BEB2; max-width: 48ch; font-size: 1.02rem; }
+  .watch-list { list-style: none; margin: 22px 0 26px; padding: 0; display: grid; gap: 10px; }
+  .watch-list li { display: flex; gap: 10px; font-size: .95rem; color: #D7DBD1; }
+  .watch-list li::before { content: "—"; color: #8FCBB6; }
+  .alert-card { background: #1B2129; border: 1px solid #2C333A; padding: 20px 20px 18px; font-family: var(--font-mono); font-size: .82rem; color: #C9CEC4; }
+  .alert-card .eyebrow { color: #E3B067; margin-bottom: 10px; }
+  .alert-card h4 { font-family: var(--font-serif); font-size: 1.15rem; color: var(--ink-band-text); margin: 6px 0 10px; font-weight: 400; }
+  .alert-card ol { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; }
+  .alert-card ol li::marker { color: #8FCBB6; }
+
+  .tiers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .tier { background: var(--paper-raised); padding: 26px 22px; display: flex; flex-direction: column; gap: 14px; }
+  .tier.featured { background: var(--verdigris-soft); }
+  .tier .tier-name { font-family: var(--font-serif); font-size: 1.15rem; }
+  .tier .price { font-family: var(--font-display); font-size: 2.1rem; }
+  .tier .price span { font-family: var(--font-mono); font-size: .78rem; color: var(--ink-faint); font-style: normal; }
+  .tier ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; font-size: .88rem; color: var(--ink-soft); flex: 1; }
+  .tier ul li { padding-left: 1.1em; position: relative; }
+  .tier ul li::before { content: "·"; position: absolute; left: 0; color: var(--verdigris); font-weight: 700; }
+  .tier .btn { text-align: center; margin-top: 4px; }
+  .tier-note { font-family: var(--font-serif); font-style: italic; color: var(--ink-soft); text-align: center; margin-top: 22px; font-size: 1.02rem; }
+
+  .trust { border-top: 1px solid var(--rule); }
+  .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; padding: clamp(36px, 6vw, 56px) 0; }
+  .trust-col h4 { font-family: var(--font-mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-faint); margin-bottom: 12px; }
+  .trust-col p, .trust-col a { font-size: .88rem; color: var(--ink-soft); line-height: 1.6; }
+  .trust-col a { display: block; text-decoration: none; margin-bottom: 6px; }
+  .trust-col a:hover { color: var(--verdigris); }
+  .seal-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: .72rem; border: 1px solid var(--verdigris); color: var(--verdigris); padding: 6px 10px; }
+
+  footer.legal { border-top: 1px solid var(--rule); padding: 18px 0 40px; font-family: var(--font-mono); font-size: .72rem; color: var(--ink-faint); }
+
+  @media (max-width: 880px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .brief-grid { grid-template-columns: 1fr; }
+    .watch-grid { grid-template-columns: 1fr; }
+    .tiers { grid-template-columns: 1fr 1fr; }
+    .trust-grid { grid-template-columns: 1fr 1fr; }
+    nav.primary { display: none; }
+  }
+  @media (max-width: 520px) {
+    .tiers { grid-template-columns: 1fr; }
+    .trust-grid { grid-template-columns: 1fr; }
+  }
+</style>

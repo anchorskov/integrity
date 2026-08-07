@@ -1,0 +1,44 @@
+# worker/wrangler.toml
+name = "fourthbranch-api"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+# ---------- Shared defaults ----------
+[vars]
+CORS_ORIGINS = "http://localhost:4321,https://thefourthbranch.net,https://www.thefourthbranch.net"
+
+# ---------- Production environment ----------
+[env.production]
+routes = [
+  { pattern = "thefourthbranch.net/api/*", zone_name = "thefourthbranch.net" },
+  { pattern = "www.thefourthbranch.net/api/*", zone_name = "thefourthbranch.net" },
+]
+
+[env.production.vars]
+CORS_ORIGINS = "https://thefourthbranch.net,https://www.thefourthbranch.net"
+
+[[env.production.d1_databases]]
+binding       = "DB"
+database_name = "fourthbranch"
+database_id   = "1d0f2495-3242-4d8f-858a-c92f2bd59cdc"
+migrations_dir = "migrations"
+
+# ---------- Preview environment ----------
+[env.preview]
+[env.preview.vars]
+CORS_ORIGINS = "http://localhost:4321,https://thefourthbranch.net"
+
+[[env.preview.d1_databases]]
+binding       = "DB"
+database_name = "fourthbranch-preview"
+database_id   = "49e1b96a-0800-491b-953d-3e70c00c17df"
+migrations_dir = "migrations"
+
+# ---------- Local dev default (no --env flag) ----------
+[[d1_databases]]
+binding       = "DB"
+database_name = "fourthbranch-preview"
+database_id   = "49e1b96a-0800-491b-953d-3e70c00c17df"
+migrations_dir = "migrations"

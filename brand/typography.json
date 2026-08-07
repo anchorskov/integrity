@@ -1,0 +1,32 @@
+{
+  "name": "the-ledger",
+  "roles": {
+    "display": {
+      "family": "Libre Caslon Display",
+      "fallback": "Georgia, 'Times New Roman', serif",
+      "weights": [400],
+      "usage": "Hero headlines, section H2s. Caslon was the typeface of America's founding civic documents — the reference is deliberate for a 'Fourth Branch of government' project. Use large, restrained — this face carries the page's institutional weight, not decoration."
+    },
+    "serif": {
+      "family": "Libre Caslon Text",
+      "fallback": "Georgia, serif",
+      "weights": [400, 700],
+      "styles": ["normal", "italic"],
+      "usage": "Ledes, pull quotes, the membership tagline, section subheads that need warmth. Italic is used for emphasis within headlines (see hero 'Wyoming has a fourth')."
+    },
+    "body": {
+      "family": "Public Sans",
+      "fallback": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+      "variableWeightRange": "300 800",
+      "usage": "All UI copy, nav, buttons, card body text. Public Sans is the U.S. Web Design System's civic-service typeface — chosen because this is public-facing civic infrastructure, not a generic product choice."
+    },
+    "mono": {
+      "family": "IBM Plex Mono",
+      "fallback": "ui-monospace, 'SF Mono', Menlo, monospace",
+      "weights": [400, 500, 600],
+      "usage": "Every piece of record metadata: dates, dollar amounts, vote tallies, docket-style eyebrows, field labels in an Integrity Brief. This is load-bearing, not stylistic — it visually marks 'this is a verifiable data point' everywhere it appears."
+    }
+  },
+  "notes": "Fonts are self-hosted (embedded as @font-face, not linked to a font CDN) since the reference implementation was built as a CSP-restricted Artifact. When wiring into the real Astro site, self-host the woff2 files under /public/fonts/ rather than reintroducing a Google Fonts <link> — keeps a hard dependency off a third party for a page-load-critical resource.",
+  "referenceImplementation": "See the homepage concept artifact for the full @font-face block and type scale in context."
+}
