@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+.env.*
+.dev.vars
+
+# Matches skovgard2026 / grassmvt_survey convention: docs/ holds working
+# notes, legal filings, and other machine-local material that should never
+# reach a remote. See docs/planning for what's actually in here.
+docs/
