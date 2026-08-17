@@ -8,10 +8,22 @@
 
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
+import members from './routes/members.js';
 
 export type Env = {
   DB: D1Database;
   CORS_ORIGINS: string;
+  // Auth (worker/src/lib/session.ts, magic-link.ts, routes/members.ts).
+  // HASH_SALT and RESEND_API_KEY are secrets (worker/.dev.vars locally,
+  // `wrangler secret put` in each deployed env), never committed vars.
+  HASH_SALT: string;
+  RESEND_API_KEY?: string;
+  EMAIL_FROM?: string;
+  EMAIL_REPLY_TO?: string;
+  APP_BASE_URL?: string;
+  ENVIRONMENT?: string;
+  WEBAUTHN_RP_ID?: string;
+  WEBAUTHN_RP_NAME?: string;
 };
 
 const app = new Hono<{ Bindings: Env }>();
@@ -28,36 +40,10 @@ app.get('/api/health', (c) =>
   c.json({ ok: true, service: 'fourthbranch-api', time: new Date().toISOString() }),
 );
 
-// ---------------------------------------------------------------------
-// Members / auth: schema is live (migrations/0001_members_auth.sql,
-// ported from grassmvt_survey's Lucia + WebAuthn stack). Route handlers
-// are not yet implemented; each stub below documents what it will do so
-// this file stays the map of Phase 1 as it fills in, rather than a bare
-// 404. See docs/planning/05-mvp-roadmap.md Phase 1.
-// ---------------------------------------------------------------------
-const members = new Hono<{ Bindings: Env }>();
-
-members.get('/me', (c) =>
-  c.json(
-    { error: 'not_implemented', detail: 'Session lookup against member_sessions is not wired up yet.' },
-    501,
-  ),
-);
-
-members.post('/magic-link/request', (c) =>
-  c.json(
-    { error: 'not_implemented', detail: 'Will insert into member_magic_link_tokens and send via email; port grassmvt_survey src/server/email/.' },
-    501,
-  ),
-);
-
-members.post('/passkey/register/options', (c) =>
-  c.json(
-    { error: 'not_implemented', detail: 'Will issue a webauthn_challenges row via @simplewebauthn/server.' },
-    501,
-  ),
-);
-
+// Members / auth: magic-link sign-in and passkey registration against
+// migrations/0001_members_auth.sql. See routes/members.ts and
+// docs/planning/05-mvp-roadmap.md Phase 1. Passkey login (as opposed to
+// registration) and OAuth are not implemented yet.
 app.route('/api/members', members);
 
 export default app;
