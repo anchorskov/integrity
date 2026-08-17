@@ -103,6 +103,13 @@ remove it from `.gitignore`.
 | `docs/planning/03-reuse-architecture.md` | File-by-file reuse map, Phase 0 infrastructure decisions |
 | `docs/planning/04-org-compliance.md` | Built from the real Articles/Bylaws, the board-composition conflict, IRS quid-pro-quo note |
 | `docs/planning/05-mvp-roadmap.md` | Full MVP build sequence, phase by phase |
+| `docs/planning/06-membership-civic-info-planning.md` | Imported canonical copy of the external membership/civic-information planning draft |
+| `docs/planning/07-planning-deconflict-notes-2026-08-07.md` | Deconflict map of overlapping planning drafts and recommended consolidation steps |
+| `docs/planning/08-civic-graph-spec.md` | Conceptual civic graph: entities (Person, Office, Election, Survey, Fact, Watch, etc.), time/provenance design rules, MVP entity priority |
+| `docs/planning/09-civic-geography-spec.md` | Location-to-jurisdiction resolution design: provider hierarchy, boundary versioning, election-time vs. survey-time geography snapshots |
+| `docs/planning/10-survey-methodology-spec.md` | Survey methodology classes (open vs. verified vs. scientific), response/aggregation rules, neutrality review, publication thresholds |
+| `docs/planning/11-funding-model-benchmarks.md` | Nonprofit funding benchmarks (WyoFile, Montana Free Press, VTDigger, Colorado Sun), membership pricing rationale, AI cost/routing tiers, KPI framework |
+| `docs/planning/12-design-overview.md` | Originating design rationale doc that `08`/`09`/`10` were split out of; kept for the Integrity Agent tool design, Civic Home wireframe, and decision log not yet promoted elsewhere |
 | `docs/legal/` | Actual filed Certificate of Incorporation and Bylaws (PII, gitignored) |
 
 Keep this list current: add a row when a new `docs/*.md` file is created, remove it if deleted.
