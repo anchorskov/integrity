@@ -95,6 +95,7 @@ remove it from `.gitignore`.
 
 | File | What it's for |
 |---|---|
+| `docs/AGENTS_PRIVATE.md` | Confidentiality preferences for handling this project's own working material, read given this repo's remote is public |
 | `docs/progress.md` | Living session journal, read this first when resuming work |
 | `docs/style.md` | The no-em-dash writing rule, full detail |
 | `docs/planning/00-source-notes.md` | Jim's original concept doc, seed reference |
